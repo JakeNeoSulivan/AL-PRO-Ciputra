@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Results</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-6">
+        <h1 class="text-2xl font-bold mb-4">Voting Results</h1>
+
+        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+            <thead>
+                <tr>
+                    <th class="py-2 px-4 border-b border-gray-300">Candidate</th>
+                    <th class="py-2 px-4 border-b border-gray-300">Image</th>
+                    <th class="py-2 px-4 border-b border-gray-300">Votes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for candidate, count in votes %}
+                <tr>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ candidate }}</td>
+                    <td class="py-2 px-4 border-b border-gray-200">
+                        {% if candidate == 'Candidate 1' %}
+                            <img src="https://png.pngtree.com/png-clipart/20210608/ourmid/pngtree-white-silhouette-avatar-png-image_3418408.jpg" alt="{{ candidate }}" class="h-32 w-32 object-cover rounded-full">
+                        {% elif candidate == 'Candidate 2' %}
+                            <img src="https://png.pngtree.com/png-clipart/20210608/ourmid/pngtree-white-silhouette-avatar-png-image_3418408.jpg" alt="{{ candidate }}" class="h-32 w-32 object-cover rounded-full">
+                        {% elif candidate == 'Candidate 3' %}
+                            <img src="https://png.pngtree.com/png-clipart/20210608/ourmid/pngtree-white-silhouette-avatar-png-image_3418408.jpg" alt="{{ candidate }}" class="h-32 w-32 object-cover rounded-full">
+                        {% else %}
+                            <img src="https://png.pngtree.com/png-clipart/20210608/ourmid/pngtree-white-silhouette-avatar-png-image_3418408.jpg" alt="Default Image" class="h-32 w-32 object-cover rounded-full">
+                        {% endif %}
+                    </td>
+                    <td class="py-2 px-4 border-b border-gray-200">{{ count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="flex items-center justify-between">
+            <a href="{{ url_for('vote') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Back to Voting</a>
+            <a href="/login" class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-500">logout</a>
+        </div>
+    </div>
+</body>
+</html>

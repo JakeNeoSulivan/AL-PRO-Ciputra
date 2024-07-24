@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .selected {
+            box-shadow: 0 0 10px 5px rgba(59, 130, 246, 0.5);
+            transform: scale(1.05);
+        }
+        .deselected {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h2 class="text-2xl font-bold mb-6 text-center">Vote</h2>
+        <form method="post" action="/vote">
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold mb-2">Select a Candidate</h3>
+                <div class="grid grid-cols-1 gap-4">
+                    <label class="block candidate">
+                        <input type="radio" name="candidate" value="candidate1" class="hidden">
+                        <div class="cursor-pointer flex items-center justify-center border-2 border-gray-300 rounded-lg p-4 hover:border-blue-500">
+                            <img src="https://png.pngtree.com/png-clipart/20210608/ourmid/pngtree-white-silhouette-avatar-png-image_3418408.jpg" alt="Candidate 1" class="h-32 w-32 object-cover rounded-full">
+                            <span class="ml-4 text-lg font-medium">Candidate 1</span>
+                        </div>
+                    </label>
+                    <label class="block candidate">
+                        <input type="radio" name="candidate" value="candidate2" class="hidden">
+                        <div class="cursor-pointer flex items-center justify-center border-2 border-gray-300 rounded-lg p-4 hover:border-blue-500">
+                            <img src="https://png.pngtree.com/png-clipart/20210608/ourmid/pngtree-white-silhouette-avatar-png-image_3418408.jpg" alt="Candidate 2" class="h-32 w-32 object-cover rounded-full">
+                            <span class="ml-4 text-lg font-medium">Candidate 2</span>
+                        </div>
+                    </label>
+                    <label class="block candidate">
+                        <input type="radio" name="candidate" value="candidate3" class="hidden">
+                        <div class="cursor-pointer flex items-center justify-center border-2 border-gray-300 rounded-lg p-4 hover:border-blue-500">
+                            <img src="https://png.pngtree.com/png-clipart/20210608/ourmid/pngtree-white-silhouette-avatar-png-image_3418408.jpg" alt="Candidate 3" class="h-32 w-32 object-cover rounded-full">
+                            <span class="ml-4 text-lg font-medium">Candidate 3</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Vote</button>
+                <a href="/result" class="text-blue-500 hover:underline">View Results</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('input[type="radio"]').change(function() {
+                $('.candidate').removeClass('selected').addClass('deselected');
+                $(this).closest('.candidate').addClass('selected').removeClass('deselected');
+            });
+        });
+    </script>
+</body>
+</html>
